@@ -717,7 +717,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   from { opacity: 0.5; text-shadow: 0 0 5px rgba(255,255,255,0.1); }
   to { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
 }
-/* --- Master Mobile Responsiveness Fix --- */
+/* --- Master Mobile Responsiveness --- */
 @media (max-width: 768px) {
   /* Allow scrolling and use safe view-height for mobile browsers */
   .app-container {
@@ -726,20 +726,23 @@ input[type="range"]::-webkit-slider-runnable-track {
   }
 
   .game-container {
-    padding: 15px 10px;
-    padding-bottom: 90px; /* Crucial: Ensures you can scroll past the audio widget! */
+    padding: 10px;
+    padding-bottom: 90px; /* Safely clears the audio widget */
     height: auto; 
     min-height: 100svh;
+    display: flex;
+    flex-direction: column;
   }
 
   .main-content {
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between; /* Pushes keyboard to the bottom! */
+    flex: 1;
+    width: 100%;
   }
   
-  /* Make the header wrap safely so nothing gets cut off */
   .header {
     flex-wrap: wrap;
     gap: 10px;
@@ -753,55 +756,62 @@ input[type="range"]::-webkit-slider-runnable-track {
     gap: 8px;
   }
 
-  /* Shrink badges slightly */
   .header-badge, .btn-primary {
     padding: 8px 12px;
     font-size: 12px;
   }
 
-  /* Tighter Board */
+  /* Make Board Look Great */
   .local-board, .row {
-    gap: 5px;
+    gap: 6px;
   }
 
   .cell {
-    width: 14vw;
-    height: 14vw;
-    max-width: 50px;
-    max-height: 50px;
-    font-size: 24px;
+    width: 15vw;
+    height: 15vw;
+    max-width: 60px;
+    max-height: 60px;
+    font-size: 26px;
     border-width: 2px;
   }
 
-  /* --- Keyboard Squish Fix --- */
+  /* --- Premium Mobile Keyboard --- */
   .keyboard {
-    margin-top: 10px;
+    margin-top: auto; 
     width: 100%;
-    max-width: 100%;
-    padding: 0 2px;
-    gap: 6px;
+    max-width: 500px;
+    padding: 0 4px;
+    gap: 8px; /* Vertical gap between rows */
   }
   
   .keyboard-row {
     width: 100%;
+    display: flex;
     justify-content: center;
-    gap: 4px;
+    gap: 5px; /* Horizontal gap between keys */
   }
 
-  /* Force standard mobile key heights */
+  /* Emulate Native Wordle Stagger for the middle row (A S D F...) */
+  .keyboard-row:nth-child(3) {
+    padding: 0 5%;
+  }
+
   .key {
     padding: 0;
-    height: 48px; /* Fixed height stops them from getting too tall */
-    font-size: 14px;
+    height: 56px; /* Native mobile keyboard height */
+    font-size: 18px; /* Much easier to read */
+    border-radius: 6px;
     flex: 1; 
+    min-width: 0; /* CRITICAL: Prevents flexbox from breaking proportions */
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 800;
   }
 
   .key.wide {
-    flex: 1.5;
-    font-size: 11px;
+    flex: 1.5; /* Makes ENTER and BACKSPACE slightly wider */
+    font-size: 12px;
   }
 
   /* Opponents Panel */
@@ -809,6 +819,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     min-width: unset;
     padding: 15px;
+    margin-bottom: 10px;
   }
 
   /* Shrink and anchor the audio widget */
