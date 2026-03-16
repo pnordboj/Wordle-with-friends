@@ -414,7 +414,6 @@ body {
 .key.present { background-color: #FEE75C; color: #111214; }
 .key.absent { background-color: #313338; color: #80848e; }
 
-}
 .opponents-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
