@@ -638,6 +638,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     max-width: 500px;
   }
+}
 
   /* --- Wordle-Inspired Loading Screen --- */
 .loader-row {
