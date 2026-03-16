@@ -648,6 +648,74 @@ input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     max-width: 500px;
   }
+
+  /* --- Wordle-Inspired Loading Screen --- */
+.loader-row {
+  display: flex;
+  gap: 12px;
+  perspective: 1000px; /* Gives the flip a realistic 3D depth */
+  margin-bottom: 10px;
+}
+
+.loader-tile {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #313338;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: 900;
+  color: #f2f3f5;
+  background-color: #1e1f22;
+  /* 2.4s total duration, loops infinitely */
+  animation: wordleFlip 2.4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Stagger the flips for a wave effect */
+.loader-tile:nth-child(1) { animation-delay: 0s; }
+.loader-tile:nth-child(2) { animation-delay: 0.15s; }
+.loader-tile:nth-child(3) { animation-delay: 0.3s; }
+.loader-tile:nth-child(4) { animation-delay: 0.45s; }
+.loader-tile:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes wordleFlip {
+  0%, 15% {
+    transform: rotateX(0deg);
+    background-color: #1e1f22; border-color: #313338; color: #f2f3f5;
+  }
+  20% { transform: rotateX(-90deg); } /* Flips backwards to hide */
+  25%, 45% {
+    transform: rotateX(0deg);
+    background-color: #FEE75C; border-color: #FEE75C; color: #111214; /* Turns Yellow */
+  }
+  50% { transform: rotateX(-90deg); }
+  55%, 75% {
+    transform: rotateX(0deg);
+    background-color: #57F287; border-color: #57F287; color: #111214; /* Turns Green */
+  }
+  80% { transform: rotateX(-90deg); }
+  85%, 100% {
+    transform: rotateX(0deg);
+    background-color: #1e1f22; border-color: #313338; color: #f2f3f5; /* Back to Grey */
+  }
+}
+
+.loader-text {
+  color: #ffffff;
+  margin-top: 30px;
+  letter-spacing: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  animation: pulseText 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulseText {
+  from { opacity: 0.5; text-shadow: 0 0 5px rgba(255,255,255,0.1); }
+  to { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
 }
   /* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
