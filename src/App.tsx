@@ -17,7 +17,7 @@ const urlRoomCode = queryParams.get('room');
 let discordSdk: DiscordSDK | null = null;
 if (isDiscord) discordSdk = new DiscordSDK('1481898488500326462'); 
 
-const backendUrl = window.location.hostname === 'localhost' ? 'ws://localhost:3001' : 'wss://your-future-backend-url.com'; 
+const backendUrl = window.location.hostname === 'localhost' ? 'ws://localhost:3001' : 'wss://wordle-with-friends-backend-qxjh.onrender.com'; 
 const client = new Client(backendUrl);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
