@@ -649,3 +649,69 @@ input[type="range"]::-webkit-slider-runnable-track {
     max-width: 500px;
   }
 }
+  /* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Scale down the tiles */
+  .cell {
+    width: 14vw;
+    height: 14vw;
+    max-width: 55px;
+    max-height: 55px;
+    font-size: 26px;
+  }
+
+  /* Make the keyboard squish perfectly */
+  .keyboard {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 500px;
+    padding: 0 5px;
+  }
+  
+  .keyboard-row {
+    width: 100%;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  /* flex: 1 forces keys to stretch and squish based on screen width */
+  .key {
+    padding: 16px 0;
+    font-size: 13px;
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .key.wide {
+    flex: 1.5;
+    font-size: 11px;
+  }
+
+  .lobby-card {
+    padding: 25px 20px;
+    margin-top: 4vh;
+  }
+
+  .player-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .opponents-panel {
+    width: 100%;
+    min-width: unset;
+  }
+}
