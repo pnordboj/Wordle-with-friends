@@ -117,13 +117,20 @@ export default function App() {
 
   const handleReturnToLobby = () => room?.send('return_to_lobby');
 
-  if (appPhase === 'loading' || !room) {
+    if (appPhase === 'loading' || !room) {
     return (
       <div className="app-container" style={{ justifyContent: 'center', alignItems: 'center' }}>
-        <div className="loading-spinner">
-          <Loader2 size={48} className="spin-anim" color="#5865F2" />
-          <h2 style={{ color: '#ffffff', marginTop: '20px', letterSpacing: '2px' }}>CONNECTING...</h2>
+        
+        {/* The New 3D Wordle Wave Loader */}
+        <div className="loader-row">
+          {['L', 'O', 'A', 'D', 'I', 'N', 'G'].map((letter, i) => (
+            <div key={i} className="loader-tile">
+              {letter}
+            </div>
+          ))}
         </div>
+        
+        <div className="loader-text">Connecting</div>
       </div>
     );
   }
