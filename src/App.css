@@ -717,35 +717,69 @@ input[type="range"]::-webkit-slider-runnable-track {
   from { opacity: 0.5; text-shadow: 0 0 5px rgba(255,255,255,0.1); }
   to { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.8); }
 }
-  /* --- Mobile Responsiveness --- */
+/* --- Master Mobile Responsiveness Fix --- */
 @media (max-width: 768px) {
+  /* Allow scrolling and use safe view-height for mobile browsers */
+  .app-container {
+    min-height: 100svh;
+    overflow-y: auto;
+  }
+
+  .game-container {
+    padding: 15px 10px;
+    padding-bottom: 90px; /* Crucial: Ensures you can scroll past the audio widget! */
+    height: auto; 
+    min-height: 100svh;
+  }
+
   .main-content {
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    padding-bottom: 30px;
+    justify-content: flex-start;
   }
   
+  /* Make the header wrap safely so nothing gets cut off */
   .header {
-    flex-direction: column;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .header-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
   }
 
-  /* Scale down the tiles */
+  /* Shrink badges slightly */
+  .header-badge, .btn-primary {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* Tighter Board */
+  .local-board, .row {
+    gap: 5px;
+  }
+
   .cell {
     width: 14vw;
     height: 14vw;
-    max-width: 55px;
-    max-height: 55px;
-    font-size: 26px;
+    max-width: 50px;
+    max-height: 50px;
+    font-size: 24px;
+    border-width: 2px;
   }
 
-  /* Make the keyboard squish perfectly */
+  /* --- Keyboard Squish Fix --- */
   .keyboard {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
-    max-width: 500px;
-    padding: 0 5px;
+    max-width: 100%;
+    padding: 0 2px;
+    gap: 6px;
   }
   
   .keyboard-row {
@@ -754,10 +788,11 @@ input[type="range"]::-webkit-slider-runnable-track {
     gap: 4px;
   }
 
-  /* flex: 1 forces keys to stretch and squish based on screen width */
+  /* Force standard mobile key heights */
   .key {
-    padding: 16px 0;
-    font-size: 13px;
+    padding: 0;
+    height: 48px; /* Fixed height stops them from getting too tall */
+    font-size: 14px;
     flex: 1; 
     display: flex;
     justify-content: center;
@@ -769,17 +804,27 @@ input[type="range"]::-webkit-slider-runnable-track {
     font-size: 11px;
   }
 
-  .lobby-card {
-    padding: 25px 20px;
-    margin-top: 4vh;
-  }
-
-  .player-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  /* Opponents Panel */
   .opponents-panel {
     width: 100%;
     min-width: unset;
+    padding: 15px;
+  }
+
+  /* Shrink and anchor the audio widget */
+  .audio-widget {
+    bottom: 12px;
+    right: 12px;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  
+  .audio-widget input[type="range"] {
+    width: 70px; 
+  }
+
+  /* Hide the Developer Credits on mobile to clean up the screen */
+  .credits-widget {
+    display: none; 
   }
 }
