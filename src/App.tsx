@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { DiscordSDK } from '@discord/embedded-app-sdk';
 import { Client, Room } from "@colyseus/sdk"; // <-- FIXED: Added Room import
 import posthog from 'posthog-js';
-import { Loader2, Volume2, VolumeX } from 'lucide-react'; 
+import { Volume2, VolumeX } from 'lucide-react'; 
 import { Howler } from 'howler';
 import Lobby, { type GameSettings } from './Lobby';
 import WordleUI from './WordleUI';
